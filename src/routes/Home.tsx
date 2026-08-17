@@ -19,7 +19,7 @@ export function Home() {
       <section className="hero" ref={heroRef}>
         <div className="container hero-inner">
           {site.openToWork && (
-            <Badge variant="live" dot>Concieve · Contrive · Create</Badge>
+            <Badge variant="live" dot>Conceive · Contrive · Create</Badge>
           )}
           <h1 className="hero-title">
             Senior Designer
