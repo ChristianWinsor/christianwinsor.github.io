@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap:
-https://christianwinsor.github.io
-/sitemap.xml
+Sitemap: https://christianwinsor.github.io/sitemap.xml
