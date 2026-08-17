@@ -21,9 +21,9 @@ export interface VinePathData {
   highlight?: boolean;
 }
 
-/** Hand-drawn Art Nouveau vine paths — each curve is unique, no repeated symbols. */
+/** Hand-drawn Art Nouveau vine paths - each curve is unique, no repeated symbols. */
 export const VINE_PATHS: VinePathData[] = [
-  // ── Top-left corner ──
+  // - Top-left corner -
   {
     id: 'vine-tl-stem',
     d: 'M 0 220 C 45 180, 90 130, 130 95 C 165 65, 195 40, 240 28',
@@ -93,7 +93,7 @@ export const VINE_PATHS: VinePathData[] = [
     highlight: true,
   },
 
-  // ── Top-right corner ──
+  // - Top-right corner -
   {
     id: 'vine-tr-stem',
     d: 'M 1440 180 C 1395 145, 1340 105, 1285 78 C 1240 55, 1195 38, 1140 25',
@@ -155,7 +155,7 @@ export const VINE_PATHS: VinePathData[] = [
     highlight: true,
   },
 
-  // ── Bottom-left corner ──
+  // - Bottom-left corner -
   {
     id: 'vine-bl-stem',
     d: 'M 0 680 C 50 720, 105 755, 165 775 C 210 790, 255 795, 295 785',
@@ -216,7 +216,7 @@ export const VINE_PATHS: VinePathData[] = [
     breatheDelay: 8.5,
   },
 
-  // ── Bottom-right corner ──
+  // - Bottom-right corner -
   {
     id: 'vine-br-stem',
     d: 'M 1440 720 C 1390 755, 1335 780, 1275 795 C 1230 805, 1185 800, 1145 785',
@@ -278,7 +278,7 @@ export const VINE_PATHS: VinePathData[] = [
     highlight: true,
   },
 
-  // ── Left edge ──
+  // - Left edge -
   {
     id: 'vine-left-stem',
     d: 'M 0 380 C 25 395, 45 420, 55 450 C 65 480, 60 510, 48 535',
@@ -305,7 +305,7 @@ export const VINE_PATHS: VinePathData[] = [
     breatheDelay: 6.2,
   },
 
-  // ── Right edge ──
+  // - Right edge -
   {
     id: 'vine-right-stem',
     d: 'M 1440 420 C 1415 435, 1395 460, 1385 490 C 1375 520, 1380 550, 1392 575',
@@ -332,7 +332,7 @@ export const VINE_PATHS: VinePathData[] = [
     breatheDelay: 5.9,
   },
 
-  // ── Top edge (asymmetric accents) ──
+  // - Top edge (asymmetric accents) -
   {
     id: 'vine-top-accent',
     d: 'M 620 0 C 635 18, 650 35, 668 28 C 688 20, 700 5, 720 0',
@@ -351,7 +351,7 @@ export const VINE_PATHS: VinePathData[] = [
     breatheDelay: 13.2,
   },
 
-  // ── Bottom edge (asymmetric accents) ──
+  // - Bottom edge (asymmetric accents) -
   {
     id: 'vine-bottom-accent',
     d: 'M 780 900 C 765 882, 748 865, 728 872 C 708 880, 695 895, 675 900',
@@ -371,7 +371,7 @@ export const VINE_PATHS: VinePathData[] = [
   },
 ];
 
-/** Paths that glow particles travel along — curated for visual variety. */
+/** Paths that glow particles travel along - curated for visual variety. */
 export const GLOW_PATH_IDS = VINE_PATHS.filter((p) => p.glowEligible).map((p) => p.id);
 
 export const VIEWBOX = '0 0 1440 900';

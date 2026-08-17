@@ -102,12 +102,12 @@ export const projects: Project[] = [
     liveUrl: 'https://pawnstarslondon.github.io/pawnstarslondon.ca/',
     heroImage: '/projects/pawn-stars/pawnstars_website_about.png',
     cardDescription:
-      'Full website and graphic design for a local pawn shop—clear service pages, collections, loans, and brand-aligned marketing visuals.',
+      'Full website and graphic design for a local pawn shop-clear service pages, collections, loans, and brand-aligned marketing visuals.',
     overview:
-      'Pawn Stars is a community-focused pawn shop on Hamilton Road in London, Ontario. I designed and built their public website and supporting graphic work so customers can quickly understand loans, inventory, location, and contact options—while the brand feels approachable, trustworthy, and local.',
+      'Pawn Stars is a community-focused pawn shop on Hamilton Road in London, Ontario. I designed and built their public website and supporting graphic work so customers can quickly understand loans, inventory, location, and contact options-while the brand feels approachable, trustworthy, and local.',
     challenge: [
       'Translate an in-store, relationship-driven business into a clear digital presence without feeling corporate or impersonal.',
-      'Surface multiple services—loans, buying, selling, and varied inventory—in a scannable structure for mobile visitors.',
+      'Surface multiple services-loans, buying, selling, and varied inventory-in a scannable structure for mobile visitors.',
       'Reinforce trust and neighbourhood credibility alongside promotional calls to action.',
       'Ship a maintainable site the client can host reliably without a heavy CMS or backend.',
     ],
@@ -127,11 +127,11 @@ export const projects: Project[] = [
     sections: [
       {
         title: 'Local trust, clear services',
-        body: 'Copy and layout lead with what visitors need: fair loans, quality pre-owned goods, and a friendly team—backed by review ratings and neighbourhood positioning.',
+        body: 'Copy and layout lead with what visitors need: fair loans, quality pre-owned goods, and a friendly team-backed by review ratings and neighbourhood positioning.',
       },
       {
         title: 'Collections & discovery',
-        body: 'Featured collections and gallery-style sections showcase the breadth of inventory—from gold and jewelry to tools, games, and music equipment—without overwhelming the page.',
+        body: 'Featured collections and gallery-style sections showcase the breadth of inventory-from gold and jewelry to tools, games, and music equipment-without overwhelming the page.',
       },
       {
         title: 'Brand & graphics',
@@ -204,7 +204,7 @@ export const projects: Project[] = [
     featured: true,
     tags: ['Design leadership', 'Figma', 'Design systems'],
     stack: ['Figma', 'React', 'Design systems'],
-    heroImage: '/projects/accelera/hero.svg',
+    heroImage: '/projects/accelera/accelerahero.png',
     cardDescription:
       'Led UX from wireframe to interactive prototype. Built design systems, component libraries, and app flows.',
     overview:

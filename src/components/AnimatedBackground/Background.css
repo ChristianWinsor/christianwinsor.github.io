@@ -25,7 +25,7 @@
   will-change: transform;
 }
 
-/* ── Base vine strokes — nearly invisible at rest ── */
+/* Base vine strokes - nearly invisible at rest */
 .art-nouveau-base .art-nouveau-vine {
   fill: none;
   stroke: #111111;
@@ -45,7 +45,7 @@
   opacity: calc(0.03 + var(--mouse-proximity) * 0.012);
 }
 
-/* ── Illuminated layer — revealed by travelling light ── */
+/* - Illuminated layer - revealed by travelling light - */
 .art-nouveau-illuminated .art-nouveau-vine {
   fill: none;
   stroke: #222222;
@@ -68,7 +68,7 @@
   opacity: 0.9;
 }
 
-/* ── Subtle secondary motion — breathing vines ── */
+/* - Subtle secondary motion - breathing vines - */
 .art-nouveau-group {
   transform-origin: center;
   transform-box: fill-box;
@@ -118,12 +118,12 @@
   transform-box: fill-box;
 }
 
-/* ── Glow orbs ── */
+/* - Glow orbs - */
 .art-nouveau-glow-orb {
   mix-blend-mode: screen;
 }
 
-/* ── Reduced motion: static faint illustration ── */
+/* - Reduced motion: static faint illustration - */
 .animated-background--reduced .art-nouveau-frame {
   transform: none;
   will-change: auto;
@@ -150,7 +150,7 @@
   animation: none;
 }
 
-/* ── Keyframes: imperceptible organic drift ── */
+/* - Keyframes: imperceptible organic drift - */
 @keyframes vine-breathe-tl {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
   33% { transform: translate3d(1px, 2px, 0) rotate(0.15deg); }

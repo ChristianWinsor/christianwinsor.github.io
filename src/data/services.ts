@@ -57,13 +57,13 @@ export const servicePillars = [
   {
     title: 'Product & UX Design',
     description:
-      'Discovery, user flows, wireframes, interactive prototypes, UI design, and design systems—from research through production-ready handoff.',
+      'Discovery, user flows, wireframes, interactive prototypes, UI design, and design systems; from research to production ready handoff.',
     accent: 'purple' as const,
   },
   {
     title: 'Web Design & Development',
     description:
-      'Custom-coded websites and applications (React/Next.js, TypeScript)—no templates—built mobile-minded, performance-optimized, and SEO-ready.',
+      'Custom-coded websites and applications (React/Next.js, TypeScript), no templates; built with care, optimized to perform, and SEO-ready.',
     accent: 'blue' as const,
   },
   {
@@ -87,7 +87,7 @@ export const serviceApproach = [
   },
   {
     title: 'Plain communication',
-    body: 'Direct, written updates on a predictable rhythm—especially when scope, timeline, or budget shifts.',
+    body: 'Direct, written updates on a predictable rhythm-especially when scope, timeline, or budget shifts.',
   },
   {
     title: 'Honest scoping',
@@ -113,7 +113,7 @@ export const serviceProcess = [
   {
     step: '03',
     title: 'Design & build',
-    body: 'Flows, wireframes, visual design, and development—with review cycles before launch.',
+    body: 'Flows, wireframes, visual design, and development, and review cycles before launch.',
   },
   {
     step: '04',
@@ -125,13 +125,13 @@ export const serviceProcess = [
 export const serviceCategories: ServiceCategory[] = [
   {
     id: 'core-care',
-    title: 'Website maintenance — Core Care',
+    title: 'Website maintenance - Core Care',
     description: 'Required foundation for any retainer that includes website maintenance. Select one tier.',
     note: 'Higher tiers include everything in the tiers below them.',
   },
   {
     id: 'care-addons',
-    title: 'Website maintenance — add-ons',
+    title: 'Website maintenance - add-ons',
     description: 'Stack on top of Core Care when you need more than your tier includes.',
   },
   {
@@ -320,7 +320,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'flyer-basic',
     categoryId: 'promotional',
-    name: 'Flyer subscription — Basic',
+    name: 'Flyer subscription - Basic',
     description: '1 flyer/mo using existing brand assets, up to 3 revision rounds.',
     priceLabel: '$300/mo',
     amountCad: 300,
@@ -330,7 +330,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'flyer-standard',
     categoryId: 'promotional',
-    name: 'Flyer subscription — Standard',
+    name: 'Flyer subscription - Standard',
     description: '1 flyer/mo with elevated visual treatment and custom graphics, up to 3 revision rounds.',
     priceLabel: '$600/mo',
     amountCad: 600,
@@ -340,7 +340,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'flyer-advanced',
     categoryId: 'promotional',
-    name: 'Flyer subscription — Advanced',
+    name: 'Flyer subscription - Advanced',
     description: 'Up to 2 flyers/mo, campaign-quality material, priority turnaround, up to 3 revision rounds each.',
     priceLabel: '$900/mo',
     amountCad: 900,
@@ -350,7 +350,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'ad-first',
     categoryId: 'advertising',
-    name: 'Ad campaign management — first active campaign',
+    name: 'Ad campaign management - first active campaign',
     description: '',
     priceLabel: '$300/mo',
     amountCad: 300,
@@ -359,7 +359,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'ad-additional',
     categoryId: 'advertising',
-    name: 'Ad campaign management — each additional active campaign',
+    name: 'Ad campaign management - each additional active campaign',
     description: '',
     priceLabel: '$250/mo',
     amountCad: 250,
@@ -404,7 +404,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'email-1',
     categoryId: 'email',
-    name: 'Email marketing — 1 campaign/mo',
+    name: 'Email marketing - 1 campaign/mo',
     description: '',
     priceLabel: '$150/mo',
     amountCad: 150,
@@ -414,7 +414,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'email-2',
     categoryId: 'email',
-    name: 'Email marketing — 2 campaigns/mo',
+    name: 'Email marketing - 2 campaigns/mo',
     description: '',
     priceLabel: '$275/mo',
     amountCad: 275,
@@ -424,7 +424,7 @@ export const selectableServices: SelectableService[] = [
   {
     id: 'email-4',
     categoryId: 'email',
-    name: 'Email marketing — 4 campaigns/mo',
+    name: 'Email marketing - 4 campaigns/mo',
     description: '',
     priceLabel: '$500/mo',
     amountCad: 500,
@@ -458,7 +458,7 @@ export const writingBundles: WritingBundle[] = [
     id: 'brand-foundations-writing',
     name: 'Brand Foundations Writing Bundle',
     description:
-      'Brand voice guide, Standard-tier website copywriting (up to 5 pages), and a long-form launch blog post—for establishing or resetting written identity.',
+      'Brand voice guide, Standard-tier website copywriting (up to 5 pages), and a long-form launch blog post-for establishing or resetting written identity.',
     priceLabel: '$1,900 flat',
     savingsLabel: 'Save $350 vs individual pricing ($2,250)',
     billing: 'one-time',
@@ -476,7 +476,7 @@ export const writingBundles: WritingBundle[] = [
 ];
 
 export const creativeWritingIntro =
-  'Words are part of the product—not an afterthought. Available standalone or alongside website, product design, and development work. Basic / Standard / Advanced tiers reflect depth of research and polish, not level of care.';
+  'Words are part of the product-not an afterthought. Available standalone or alongside website, product design, and development work. Basic / Standard / Advanced tiers reflect depth of research and polish, not level of care.';
 
 export const creativeWritingSections: InfoTableSection[] = [
   {
@@ -526,7 +526,7 @@ export const creativeWritingSections: InfoTableSection[] = [
       {
         name: 'Brand voice guide',
         price: 'From $600',
-        detail: 'Tone, vocabulary, sample messaging—scoped by number of contexts (web, social, email)',
+        detail: 'Tone, vocabulary, sample messaging-scoped by number of contexts (web, social, email)',
       },
     ],
   },
@@ -537,7 +537,7 @@ export const creativeWritingSections: InfoTableSection[] = [
       { name: 'Long-form article or essay (1,500–3,000 words)', price: '$450', detail: '' },
       { name: 'Ghostwriting, long-form', price: '$275/1,000 words', detail: 'Includes 1 revision round' },
       {
-        name: 'Creative writing — short fiction or narrative',
+        name: 'Creative writing - short fiction or narrative',
         price: '$200/1,000 words',
         detail: '',
       },
@@ -618,7 +618,7 @@ export const projectServiceSections: InfoTableSection[] = [
   {
     title: 'Website packages',
     intro:
-      'Custom-coded sites (React/Next.js, TypeScript)—no templates. 50% deposit before work begins; balance due before launch. Exact price confirmed in a written proposal.',
+      'Custom-coded sites (React/Next.js, TypeScript)-no templates. 50% deposit before work begins; balance due before launch. Exact price confirmed in a written proposal.',
     rows: [
       { name: 'Starter Site', price: '$3,000 – $4,500', detail: '1–3 pages, contact form, basic on-page SEO' },
       { name: 'Business Site', price: '$4,500 – $7,500', detail: '5–8 pages, blog, full SEO architecture' },
@@ -637,7 +637,7 @@ export const projectServiceSections: InfoTableSection[] = [
       { name: 'Dynamic contact/inquiry form', price: 'From $250', detail: 'Up to 8 fields, 1 routing rule' },
       { name: 'Multi-language support', price: 'From $500', detail: 'One additional language' },
       { name: 'Membership or login system', price: 'From $1,500', detail: 'Single account tier' },
-      { name: 'Blog or news system', price: '$600', detail: 'System build only—post writing priced separately' },
+      { name: 'Blog or news system', price: '$600', detail: 'System build only-post writing priced separately' },
       { name: 'Booking/scheduling integration', price: 'From $800', detail: 'Quoted after scope review' },
       { name: 'Custom animations or interactions', price: 'From $250', detail: 'Quoted by complexity' },
     ],
@@ -648,8 +648,8 @@ export const projectServiceSections: InfoTableSection[] = [
     rows: [
       { name: 'Discovery & UX research', price: 'From $750', detail: 'Up to 3 sessions' },
       { name: 'User flow mapping', price: '$300/flow', detail: '' },
-      { name: 'Wireframes — low-fidelity', price: '$150/screen', detail: '' },
-      { name: 'Wireframes — high-fidelity', price: '$275/screen', detail: '' },
+      { name: 'Wireframes - low-fidelity', price: '$150/screen', detail: '' },
+      { name: 'Wireframes - high-fidelity', price: '$275/screen', detail: '' },
       { name: 'Visual & UI design', price: '$325/screen', detail: 'Production-ready screens' },
       { name: 'Design system', price: 'From $3,500', detail: 'Scoped in writing' },
       { name: 'Interactive prototype (click-through)', price: 'From $1,800', detail: 'Up to 8 connected screens' },
@@ -665,13 +665,13 @@ export const projectServiceSections: InfoTableSection[] = [
     title: 'Product design bundles',
     intro: 'Fixed-price design bundles with stated savings vs selecting items individually.',
     rows: [
-      { name: 'Discovery & Flow Bundle', price: '$3,900', detail: 'Research, 3 flows, 10 hi-fi wireframe screens — save $500' },
-      { name: 'UI & Design System Bundle', price: '$6,000', detail: '10 screens + design system starting scope — save $750' },
-      { name: 'Prototype Bundle', price: '$7,950', detail: 'Full path to clickable prototype — save $1,500' },
+      { name: 'Discovery & Flow Bundle', price: '$3,900', detail: 'Research, 3 flows, 10 hi-fi wireframe screens - save $500' },
+      { name: 'UI & Design System Bundle', price: '$6,000', detail: '10 screens + design system starting scope - save $750' },
+      { name: 'Prototype Bundle', price: '$7,950', detail: 'Full path to clickable prototype - save $1,500' },
       {
         name: 'Product Launch Bundle (design phase)',
         price: '$6,750',
-        detail: 'Research through UI for 10 screens — save $900; development quoted from $10,000',
+        detail: 'Research through UI for 10 screens - save $900; development quoted from $10,000',
       },
     ],
   },
@@ -687,17 +687,17 @@ export const projectServiceSections: InfoTableSection[] = [
       { name: 'Website speed & performance optimization', price: 'From $200', detail: 'Up to 15 pages at base rate' },
       { name: 'SEO optimization of existing pages', price: '$100/page', detail: '' },
       {
-        name: 'Website SEO audit & report — Basic',
+        name: 'Website SEO audit & report - Basic',
         price: '$500',
         detail: 'Up to 10 pages, prioritized findings',
       },
       {
-        name: 'Website SEO audit & report — Standard',
+        name: 'Website SEO audit & report - Standard',
         price: '$700',
         detail: 'Up to 25 pages, competitor comparison',
       },
       {
-        name: 'Website SEO audit & report — Advanced',
+        name: 'Website SEO audit & report - Advanced',
         price: 'From $900',
         detail: 'Up to 40 pages, full competitor benchmarking',
       },
@@ -714,18 +714,18 @@ export const projectServiceSections: InfoTableSection[] = [
   {
     title: 'Graphic design & promotional materials',
     rows: [
-      { name: 'Promotional flyer (one-off) — Basic', price: 'From $350', detail: 'Up to 3 revision rounds' },
-      { name: 'Promotional flyer (one-off) — Standard', price: 'From $600', detail: 'Advanced layout & custom graphics' },
-      { name: 'Promotional flyer (one-off) — Advanced', price: 'From $900', detail: 'Up to 2 concept directions' },
-      { name: 'Marketing graphic — Branded', price: '$150', detail: 'Templated graphic, existing brand assets' },
-      { name: 'Marketing graphic — Custom promotional', price: '$300–500', detail: '' },
+      { name: 'Promotional flyer (one-off) - Basic', price: 'From $350', detail: 'Up to 3 revision rounds' },
+      { name: 'Promotional flyer (one-off) - Standard', price: 'From $600', detail: 'Advanced layout & custom graphics' },
+      { name: 'Promotional flyer (one-off) - Advanced', price: 'From $900', detail: 'Up to 2 concept directions' },
+      { name: 'Marketing graphic - Branded', price: '$150', detail: 'Templated graphic, existing brand assets' },
+      { name: 'Marketing graphic - Custom promotional', price: '$300–500', detail: '' },
       { name: 'Campaign illustration / hero graphic', price: 'From $700', detail: 'Up to 2 concept directions' },
-      { name: 'Logo design — Basic', price: 'From $1,000', detail: '1 concept, 3 revision rounds' },
-      { name: 'Logo design — Standard', price: 'From $1,500', detail: '2 concepts, primary + secondary variations' },
-      { name: 'Logo design — Advanced', price: 'From $2,500', detail: '3 concepts, full brand mark system' },
-      { name: 'Brand identity package — Basic', price: 'From $1,500', detail: 'Logo, colours, fonts, 1-page guideline' },
-      { name: 'Brand identity package — Standard', price: 'From $2,000', detail: 'Full colour & typography system, collateral templates' },
-      { name: 'Brand identity package — Advanced', price: 'From $4,000', detail: 'Full system, up to 15-page guideline' },
+      { name: 'Logo design - Basic', price: 'From $1,000', detail: '1 concept, 3 revision rounds' },
+      { name: 'Logo design - Standard', price: 'From $1,500', detail: '2 concepts, primary + secondary variations' },
+      { name: 'Logo design - Advanced', price: 'From $2,500', detail: '3 concepts, full brand mark system' },
+      { name: 'Brand identity package - Basic', price: 'From $1,500', detail: 'Logo, colours, fonts, 1-page guideline' },
+      { name: 'Brand identity package - Standard', price: 'From $2,000', detail: 'Full colour & typography system, collateral templates' },
+      { name: 'Brand identity package - Advanced', price: 'From $4,000', detail: 'Full system, up to 15-page guideline' },
       { name: 'Marketing graphic pack (3 posts, Basic)', price: '$400', detail: '' },
       { name: 'Event promotion campaign (graphics + copy)', price: '$600', detail: '' },
       { name: 'Business card design', price: '$250', detail: '' },

@@ -1,4 +1,4 @@
-# Christian Winsor — Portfolio
+# Christian Winsor - Portfolio
 
 My portfolio.
 

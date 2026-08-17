@@ -4,7 +4,7 @@ interface GlowTrailProps {
   configs: GlowParticleConfig[];
 }
 
-/** Glow particle path assignments — kept as a declarative config layer. */
+/** Glow particle path assignments - kept as a declarative config layer. */
 export const DEFAULT_GLOW_CONFIGS: GlowParticleConfig[] = [
   {
     pathId: 'vine-tl-stem',

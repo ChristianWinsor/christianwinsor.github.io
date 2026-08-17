@@ -32,7 +32,7 @@ export const ArtNouveauFrame = forwardRef<SVGSVGElement, ArtNouveauFrameProps>(
       >
         <LightMask spotCount={DEFAULT_GLOW_CONFIGS.length} reducedMotion={reducedMotion} />
 
-        {/* Base layer — nearly invisible resting state */}
+        {/* Base layer - nearly invisible resting state */}
         <g className="art-nouveau-base">
           {GROUPS.map((group) => (
             <g
@@ -47,7 +47,7 @@ export const ArtNouveauFrame = forwardRef<SVGSVGElement, ArtNouveauFrameProps>(
           ))}
         </g>
 
-        {/* Illuminated layer — revealed only where light travels */}
+        {/* Illuminated layer - revealed only where light travels */}
         {!reducedMotion && (
           <g className="art-nouveau-illuminated" mask="url(#vine-illumination-mask)">
             {GROUPS.map((group) => (
