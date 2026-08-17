@@ -1,0 +1,43 @@
+.pub-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.pub-row {
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--border-subtle);
+}
+
+.pub-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pub-row:first-child {
+  padding-top: 0;
+}
+
+.pub-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.pub-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+
+.pub-link {
+  font-size: 12px;
+  color: var(--accent-blue);
+  transition: color 0.15s ease;
+}
+
+.pub-link:hover {
+  color: var(--accent-gold);
+}

@@ -1,0 +1,54 @@
+.contact-cta {
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.contact-cta-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  max-width: 520px;
+}
+
+.contact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border: 0.5px solid var(--border-strong);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.contact-chip:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-gold);
+  background: var(--accent-gold-dim);
+}
+
+.contact-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .contact-chips {
+    flex-direction: column;
+  }
+
+  .contact-chip {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+}

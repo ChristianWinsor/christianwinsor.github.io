@@ -1,0 +1,215 @@
+.animated-background {
+  --parallax-x: 0;
+  --parallax-y: 0;
+  --mouse-proximity: 0;
+
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-primary);
+  contain: strict;
+}
+
+.art-nouveau-frame {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  transform: translate3d(
+    calc(var(--parallax-x) * 4px),
+    calc(var(--parallax-y) * 4px),
+    0
+  );
+  will-change: transform;
+}
+
+/* ── Base vine strokes — nearly invisible at rest ── */
+.art-nouveau-base .art-nouveau-vine {
+  fill: none;
+  stroke: #111111;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: calc(0.035 + var(--mouse-proximity) * 0.015);
+  transition: opacity 1.2s ease;
+}
+
+.art-nouveau-base .art-nouveau-vine--highlight {
+  stroke: #222222;
+  opacity: calc(0.05 + var(--mouse-proximity) * 0.02);
+}
+
+.art-nouveau-base .art-nouveau-vine--leaf,
+.art-nouveau-base .art-nouveau-vine--flower {
+  opacity: calc(0.03 + var(--mouse-proximity) * 0.012);
+}
+
+/* ── Illuminated layer — revealed by travelling light ── */
+.art-nouveau-illuminated .art-nouveau-vine {
+  fill: none;
+  stroke: #222222;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+.art-nouveau-illuminated .art-nouveau-vine--highlight {
+  stroke: #333333;
+}
+
+.art-nouveau-illuminated .art-nouveau-vine--leaf {
+  stroke: #1a1a1a;
+  opacity: 0.85;
+}
+
+.art-nouveau-illuminated .art-nouveau-vine--flower {
+  stroke: #2a2a2a;
+  opacity: 0.9;
+}
+
+/* ── Subtle secondary motion — breathing vines ── */
+.art-nouveau-group {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.art-nouveau-group--corner-tl {
+  animation: vine-breathe-tl 28s ease-in-out infinite;
+}
+
+.art-nouveau-group--corner-tr {
+  animation: vine-breathe-tr 32s ease-in-out infinite;
+}
+
+.art-nouveau-group--corner-bl {
+  animation: vine-breathe-bl 30s ease-in-out infinite;
+}
+
+.art-nouveau-group--corner-br {
+  animation: vine-breathe-br 26s ease-in-out infinite;
+}
+
+.art-nouveau-group--edge-left {
+  animation: vine-sway-left 24s ease-in-out infinite;
+}
+
+.art-nouveau-group--edge-right {
+  animation: vine-sway-right 27s ease-in-out infinite;
+}
+
+.art-nouveau-group--edge-top {
+  animation: vine-drift-top 22s ease-in-out infinite;
+}
+
+.art-nouveau-group--edge-bottom {
+  animation: vine-drift-bottom 25s ease-in-out infinite;
+}
+
+.art-nouveau-vine--leaf {
+  animation: leaf-sway 18s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.art-nouveau-vine--curl {
+  animation: curl-sway 20s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* ── Glow orbs ── */
+.art-nouveau-glow-orb {
+  mix-blend-mode: screen;
+}
+
+/* ── Reduced motion: static faint illustration ── */
+.animated-background--reduced .art-nouveau-frame {
+  transform: none;
+  will-change: auto;
+}
+
+.animated-background--reduced .art-nouveau-base .art-nouveau-vine {
+  opacity: 0.07;
+  transition: none;
+}
+
+.animated-background--reduced .art-nouveau-base .art-nouveau-vine--highlight {
+  stroke: #222222;
+  opacity: 0.09;
+}
+
+.animated-background--reduced .art-nouveau-base .art-nouveau-vine--leaf,
+.animated-background--reduced .art-nouveau-base .art-nouveau-vine--flower {
+  opacity: 0.06;
+}
+
+.animated-background--reduced .art-nouveau-group,
+.animated-background--reduced .art-nouveau-vine--leaf,
+.animated-background--reduced .art-nouveau-vine--curl {
+  animation: none;
+}
+
+/* ── Keyframes: imperceptible organic drift ── */
+@keyframes vine-breathe-tl {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(1px, 2px, 0) rotate(0.15deg); }
+  66% { transform: translate3d(-1px, 1px, 0) rotate(-0.1deg); }
+}
+
+@keyframes vine-breathe-tr {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  40% { transform: translate3d(-2px, 1px, 0) rotate(-0.12deg); }
+  70% { transform: translate3d(1px, -1px, 0) rotate(0.08deg); }
+}
+
+@keyframes vine-breathe-bl {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  35% { transform: translate3d(2px, -1px, 0) rotate(0.1deg); }
+  65% { transform: translate3d(-1px, 2px, 0) rotate(-0.15deg); }
+}
+
+@keyframes vine-breathe-br {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  45% { transform: translate3d(-1px, -2px, 0) rotate(-0.08deg); }
+  75% { transform: translate3d(2px, 1px, 0) rotate(0.12deg); }
+}
+
+@keyframes vine-sway-left {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(2px, 0, 0); }
+}
+
+@keyframes vine-sway-right {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-2px, 0, 0); }
+}
+
+@keyframes vine-drift-top {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 1px, 0); }
+}
+
+@keyframes vine-drift-bottom {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -1px, 0); }
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(0.6deg); }
+}
+
+@keyframes curl-sway {
+  0%, 100% { transform: rotate(0deg) translate3d(0, 0, 0); }
+  33% { transform: rotate(0.4deg) translate3d(0, 1px, 0); }
+  66% { transform: rotate(-0.3deg) translate3d(1px, 0, 0); }
+}
+
+@media (max-width: 640px) {
+  .art-nouveau-frame {
+    inset: -4%;
+    width: 108%;
+    height: 108%;
+  }
+}

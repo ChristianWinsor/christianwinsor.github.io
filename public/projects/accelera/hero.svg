@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" fill="none">
+  <rect width="1200" height="675" fill="#0a0a0f"/>
+  <text x="600" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="44" font-weight="600" fill="#9b6dff">Accelera / Root</text>
+  <text x="600" y="360" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#a0a0b8">Design Leadership · 20202024</text>
+  <rect x="350" y="420" width="500" height="180" rx="12" fill="#12121a" stroke="rgba(155,109,255,0.3)" stroke-width="1"/>
+  <rect x="380" y="450" width="200" height="12" rx="4" fill="rgba(255,255,255,0.1)"/>
+  <rect x="380" y="480" width="440" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <rect x="380" y="500" width="380" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+</svg>

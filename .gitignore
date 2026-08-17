@@ -1,0 +1,7 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+PORTFOLIO_BUILD_PLAN.md
+Website_And_Marketing_Support_Retainer.docx
