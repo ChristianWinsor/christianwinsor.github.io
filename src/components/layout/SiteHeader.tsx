@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect, useRef, useId } from 'react';
+import { useState, useEffect, useRef, useId, useCallback } from 'react';
 import { site, navLinks } from '../../data/site';
 import { useEscapeKey, useFocusTrap, useBodyScrollLock } from '../../hooks/useA11y';
 import './SiteHeader.css';
@@ -9,13 +9,26 @@ function isActivePath(current: string, path: string): boolean {
   return current === path || current.startsWith(`${path}/`);
 }
 
+function isProjectsSectionActive(pathname: string): boolean {
+  return (
+    pathname === '/projects' ||
+    pathname.startsWith('/projects/') ||
+    pathname === '/gallery'
+  );
+}
+
 export function SiteHeader() {
   const { pathname } = useLocation();
   const menuId = useId();
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,17 +42,21 @@ export function SiteHeader() {
   }, [pathname]);
 
   useBodyScrollLock(menuOpen);
-  useEscapeKey(() => setMenuOpen(false), menuOpen);
-  useFocusTrap(mobileMenuRef, menuOpen, () => setMenuOpen(false));
+  useEscapeKey(closeMenu, menuOpen);
+  useFocusTrap(mobileMenuRef, menuOpen, closeMenu, menuToggleRef);
 
   function navClass(path: string) {
     return isActivePath(pathname, path) ? 'nav-link nav-link-active' : 'nav-link';
   }
 
+  function mobileLinkClass(path: string) {
+    return `mobile-nav-link${isActivePath(pathname, path) ? ' active' : ''}`;
+  }
+
   return (
-    <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`site-header ${scrolled ? 'scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
       <div className="container site-header-inner">
-        <Link to="/" className="site-logo" onClick={() => setMenuOpen(false)}>
+        <Link to="/" className="site-logo" onClick={closeMenu}>
           {site.name}
         </Link>
 
@@ -104,58 +121,76 @@ export function SiteHeader() {
         </nav>
 
         <button
+          ref={menuToggleRef}
           type="button"
           className="menu-toggle"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls={menuId}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen((open) => !open)}
         >
           <span className={`menu-bar ${menuOpen ? 'open' : ''}`} />
         </button>
       </div>
 
       {menuOpen && (
-        <div
-          id={menuId}
-          ref={mobileMenuRef}
-          className="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site navigation menu"
-        >
-          <nav aria-label="Mobile navigation">
+        <>
+          <button
+            type="button"
+            className="mobile-menu-backdrop"
+            aria-label="Close menu"
+            tabIndex={-1}
+            onClick={closeMenu}
+          />
+          <nav
+            id={menuId}
+            ref={mobileMenuRef}
+            className="mobile-menu"
+            aria-label="Mobile navigation"
+          >
             <ul className="mobile-nav-list">
-              {navLinks.flatMap((link) =>
-                'children' in link
-                  ? link.children.map((child) => (
-                      <li key={child.to}>
-                        <Link
-                          to={child.to}
-                          className={`mobile-nav-link${isActivePath(pathname, child.to) ? ' active' : ''}`}
-                          aria-current={isActivePath(pathname, child.to) ? 'page' : undefined}
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))
-                  : [
-                      <li key={link.to}>
-                        <Link
-                          to={link.to}
-                          className={`mobile-nav-link${isActivePath(pathname, link.to) ? ' active' : ''}`}
-                          aria-current={isActivePath(pathname, link.to) ? 'page' : undefined}
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {link.label}
-                        </Link>
-                      </li>,
-                    ],
+              {navLinks.map((link) =>
+                'children' in link ? (
+                  <li key={link.label} className="mobile-nav-group">
+                    <Link
+                      to={link.to}
+                      className={`mobile-nav-link mobile-nav-link-parent${isProjectsSectionActive(pathname) ? ' active' : ''}`}
+                      aria-current={isActivePath(pathname, link.to) ? 'page' : undefined}
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </Link>
+                    <ul className="mobile-nav-sublist" aria-label="Projects destinations">
+                      {link.children.map((child) => (
+                        <li key={child.to}>
+                          <Link
+                            to={child.to}
+                            className={mobileLinkClass(child.to)}
+                            aria-current={isActivePath(pathname, child.to) ? 'page' : undefined}
+                            onClick={closeMenu}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className={mobileLinkClass(link.to)}
+                      aria-current={isActivePath(pathname, link.to) ? 'page' : undefined}
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ),
               )}
             </ul>
           </nav>
-        </div>
+        </>
       )}
     </header>
   );

@@ -16,7 +16,7 @@ export function Resume() {
   );
 
   return (
-    <>
+    <div className="resume-page">
       <div className="page-hero container">
         <p className="section-label accent-gold">Resume</p>
         <h1>{site.name}</h1>
@@ -128,6 +128,6 @@ export function Resume() {
           {site.phone}
         </p>
       </section>
-    </>
+    </div>
   );
 }

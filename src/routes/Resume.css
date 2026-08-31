@@ -187,3 +187,61 @@
 .resume-contact a:hover {
   color: var(--accent-gold);
 }
+
+@media (max-width: 768px) {
+  .resume-page .page-hero.container,
+  .resume-page .resume-section.container,
+  .resume-page .resume-contact.container {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  .resume-prose {
+    max-width: none;
+  }
+
+  .resume-exp-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .resume-exp-header time {
+    flex-shrink: 0;
+  }
+
+  .resume-exp-item ul li {
+    max-width: none;
+  }
+
+  .resume-project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .resume-project-header span {
+    flex-shrink: 0;
+  }
+
+  .resume-project-header h3 a {
+    overflow-wrap: anywhere;
+  }
+
+  .resume-skill-group p {
+    max-width: none;
+  }
+
+  .resume-pubs a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .resume-pubs h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .resume-achievements li {
+    line-height: 1.6;
+  }
+}
