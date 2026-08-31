@@ -204,3 +204,17 @@
 .about-section .pub-link:hover {
   color: var(--accent-gold);
 }
+
+@media (max-width: 768px) {
+  .about-page .page-hero.container,
+  .about-page .about-section.container,
+  .about-page .about-cta.container {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  .about-page .about-prose,
+  .about-page .page-hero p {
+    max-width: none;
+  }
+}

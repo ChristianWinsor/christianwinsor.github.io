@@ -190,3 +190,25 @@
   background: var(--accent-purple);
   border-color: var(--accent-purple);
 }
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .gallery-item {
+    border-radius: var(--radius-md);
+  }
+
+  .gallery-item-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.8) 0%, transparent 55%);
+    padding: 8px;
+  }
+
+  .gallery-item-title {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+}

@@ -9,7 +9,7 @@
   pointer-events: none;
   overflow: hidden;
   background: var(--bg-primary);
-  contain: strict;
+  contain: layout style paint;
 }
 
 .art-nouveau-frame {
@@ -211,5 +211,28 @@
     inset: -4%;
     width: 108%;
     height: 108%;
+  }
+
+  /*
+   * Mobile browsers without pointer hover rely on the travelling glow and base
+   * vines for visibility. Slightly raise resting opacity; proximity still applies
+   * when the user touches or moves a pointer.
+   */
+  .animated-background:not(.animated-background--reduced) .art-nouveau-base .art-nouveau-vine {
+    opacity: calc(0.05 + var(--mouse-proximity) * 0.015);
+  }
+
+  .animated-background:not(.animated-background--reduced) .art-nouveau-base .art-nouveau-vine--highlight {
+    opacity: calc(0.07 + var(--mouse-proximity) * 0.02);
+  }
+
+  .animated-background:not(.animated-background--reduced) .art-nouveau-base .art-nouveau-vine--leaf,
+  .animated-background:not(.animated-background--reduced) .art-nouveau-base .art-nouveau-vine--flower {
+    opacity: calc(0.045 + var(--mouse-proximity) * 0.012);
+  }
+
+  /* Safari can fail to render blurred mask spots; keep illumination visible on mobile. */
+  .animated-background:not(.animated-background--reduced) #glow-mask-spots {
+    filter: none;
   }
 }

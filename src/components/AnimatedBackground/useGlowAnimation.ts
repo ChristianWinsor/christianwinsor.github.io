@@ -188,9 +188,19 @@ export function useMouseParallax(containerRef: React.RefObject<HTMLElement | nul
       }
     };
 
+    const onTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      targetX = (touch.clientX / window.innerWidth - 0.5) * 2;
+      targetY = (touch.clientY / window.innerHeight - 0.5) * 2;
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+
     window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
     return () => {
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('touchmove', onTouchMove);
       if (raf) cancelAnimationFrame(raf);
     };
   }, [containerRef, enabled]);

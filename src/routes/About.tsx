@@ -11,7 +11,7 @@ export function About() {
   const introRef = useScrollReveal<HTMLElement>();
 
   return (
-    <>
+    <div className="about-page">
       <div className="page-hero container">
         <p className="section-label accent-purple">About</p>
         <h1>Design lead who ships.</h1>
@@ -112,6 +112,6 @@ export function About() {
         <Button to="/projects" variant="primary">View projects</Button>
         <Button to="/contact" variant="secondary">Contact me</Button>
       </section>
-    </>
+    </div>
   );
 }

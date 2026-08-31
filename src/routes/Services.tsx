@@ -11,6 +11,7 @@ import {
   writingBundles,
 } from '../data/services';
 import { ServiceEstimator } from '../components/services/ServiceEstimator';
+import { ServicesCollapsibleSection } from '../components/services/ServicesCollapsibleSection';
 import { Button } from '../components/ui/Button';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 import '../components/services/ServiceEstimator.css';
@@ -75,9 +76,7 @@ export function Services() {
         </div>
       </div>
 
-      <section className="services-section container">
-        <h2 className="section-title">What I offer</h2>
-
+      <ServicesCollapsibleSection title="What I offer">
         <div className="pillars-grid">
           {servicePillars.map((pillar) => (
             <article
@@ -89,11 +88,9 @@ export function Services() {
             </article>
           ))}
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
-      <section className="services-section container">
-        <h2 className="section-title">Featured client work</h2>
-
+      <ServicesCollapsibleSection title="Featured client work">
         <div className="featured-clients">
           <article className="featured-client-card">
             <h3>
@@ -119,11 +116,9 @@ export function Services() {
             </p>
           </article>
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
-      <section className="services-section container">
-        <h2 className="section-title">How I work</h2>
-
+      <ServicesCollapsibleSection title="How I work">
         <div className="approach-grid">
           {serviceApproach.map((item) => (
             <article key={item.title} className="approach-card">
@@ -132,11 +127,9 @@ export function Services() {
             </article>
           ))}
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
-      <section className="services-section container">
-        <h2 className="section-title">Suggested starting bundles</h2>
-
+      <ServicesCollapsibleSection title="Suggested starting bundles">
         <p className="services-note">
           Suggested combinations for common needs. Start with one of these
           bundles or build your own selection below.
@@ -162,7 +155,7 @@ export function Services() {
             </article>
           ))}
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
       <section
         id="service-estimator"
@@ -187,14 +180,7 @@ export function Services() {
         />
       </section>
 
-      <section
-        className="services-section container"
-        aria-labelledby="creative-writing-heading"
-      >
-        <h2 id="creative-writing-heading" className="section-title">
-          Creative & content writing
-        </h2>
-
+      <ServicesCollapsibleSection title="Creative & content writing" titleId="creative-writing-heading">
         <p className="services-note">{creativeWritingIntro}</p>
 
         <h3 className="services-subtitle">Writing bundles</h3>
@@ -227,11 +213,9 @@ export function Services() {
             </article>
           ))}
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
-      <section className="services-section container">
-        <h2 className="section-title">How it works</h2>
-
+      <ServicesCollapsibleSection title="How it works">
         <div className="process-grid">
           {serviceProcess.map((step) => (
             <article key={step.step} className="process-card">
@@ -243,11 +227,9 @@ export function Services() {
             </article>
           ))}
         </div>
-      </section>
+      </ServicesCollapsibleSection>
 
-      <section className="services-section container">
-        <h2 className="section-title">Not included in retainer</h2>
-
+      <ServicesCollapsibleSection title="Not included in retainer">
         <p className="services-note">
           The following are available as separate projects or add-ons and can
           be discussed as part of your overall scope:
@@ -258,7 +240,7 @@ export function Services() {
             <li key={item}>{item}</li>
           ))}
         </ul>
-      </section>
+      </ServicesCollapsibleSection>
 
       <section className="services-section container">
         <p className="services-disclaimer">

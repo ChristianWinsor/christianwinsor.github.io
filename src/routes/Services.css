@@ -316,3 +316,77 @@
 .page-hero a:hover {
   color: var(--accent-gold);
 }
+
+/* Mobile section accordions — desktop presentation unchanged */
+.services-collapsible__header {
+  display: block;
+}
+
+.services-collapsible__trigger {
+  display: none;
+}
+
+.services-collapsible__panel[hidden] {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .services-collapsible__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .services-collapsible__header .section-title {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .services-collapsible__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 0.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+
+  .services-collapsible__trigger:hover {
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .services-collapsible__icon {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  .services-collapsible__panel[hidden] {
+    display: none;
+  }
+
+  .services-collapsible.is-open .services-collapsible__trigger {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+  }
+
+  .services-collapsible.is-open .services-collapsible__panel {
+    margin-top: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (max-width: 768px) {
+    .services-collapsible.is-open .services-collapsible__panel {
+      animation: fade-up 0.2s ease;
+    }
+  }
+}
