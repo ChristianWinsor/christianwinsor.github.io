@@ -212,3 +212,24 @@
     line-height: 1.3;
   }
 }
+
+@media (max-width: 768px) {
+  .gallery-page.container {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  .gallery-grid,
+  .gallery-item {
+    min-width: 0;
+  }
+
+  .gallery-item-title {
+    overflow-wrap: anywhere;
+  }
+
+  .lightbox-caption h3,
+  .lightbox-caption p {
+    overflow-wrap: anywhere;
+  }
+}

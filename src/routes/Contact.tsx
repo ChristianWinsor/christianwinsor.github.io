@@ -58,7 +58,7 @@ export function Contact() {
   }
 
   return (
-    <>
+    <div className="contact-page">
       <div className="page-hero container">
         <p className="section-label accent-green">Contact</p>
         <h1>Let's work together</h1>
@@ -165,6 +165,6 @@ export function Contact() {
           )}
         </section>
       </div>
-    </>
+    </div>
   );
 }

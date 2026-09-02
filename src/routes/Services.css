@@ -390,3 +390,40 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .services-section.container,
+  .services-cta.container {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  .services-collapsible__panel,
+  .pillars-grid,
+  .tiers-grid,
+  .bundles-grid,
+  .approach-grid,
+  .featured-clients,
+  .services-excluded-list {
+    min-width: 0;
+  }
+
+  .services-note,
+  .services-disclaimer,
+  .services-excluded-list li,
+  .pillar-card,
+  .tier-card,
+  .bundle-card,
+  .approach-card,
+  .featured-client-card {
+    overflow-wrap: anywhere;
+  }
+
+  .ala-carte-table {
+    max-width: 100%;
+  }
+
+  .ala-carte-row {
+    overflow-wrap: anywhere;
+  }
+}
