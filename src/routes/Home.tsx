@@ -23,7 +23,7 @@ export function Home() {
           )}
           <h1 className="hero-title">
             Senior Designer
-            <span className="hero-title-sub">& Developer</span>
+            <span className="hero-title-sub">& Creative Lead</span>
           </h1>
           <p className="hero-sub">{site.tagline} Based in {site.location}.</p>
           <div className="hero-ctas">

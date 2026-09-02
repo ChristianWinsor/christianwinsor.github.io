@@ -1,7 +1,7 @@
 export const site = {
   name: 'Christian Winsor',
   title: 'Senior Designer',
-  tagline: 'Building thoughtful interfaces and shipping real products; from UX prototypes and design systems to full-stack web apps.',
+  tagline: 'Multidisciplinary creative lead who can move from strategy and concept through UX, Visual design, development, client communication, and delivery. Experienced leading while bridging creative and technical teams to create thoughtful products.',
   location: 'London, Ontario',
   email: 'Christianwinsor@gmail.com',
   phone: '(519) 281-4318',
