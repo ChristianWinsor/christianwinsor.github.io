@@ -392,6 +392,7 @@
 }
 
 @media (max-width: 768px) {
+  .services-page .page-hero.container,
   .services-section.container,
   .services-cta.container {
     padding-left: max(20px, env(safe-area-inset-left));
