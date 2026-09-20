@@ -44,7 +44,7 @@ export function Contact() {
     const quote = readServiceQuote();
     if (!quote) return;
 
-    setSubject('Service inquiry');
+    setSubject('Retainer inquiry');
     setMessage(buildServiceQuoteMessage(quote));
     setQuoteNotice(true);
     sessionStorage.removeItem(SERVICE_QUOTE_STORAGE_KEY);

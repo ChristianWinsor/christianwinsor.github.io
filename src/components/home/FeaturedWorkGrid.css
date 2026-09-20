@@ -111,3 +111,44 @@
   white-space: nowrap;
   border: 0;
 }
+
+.featured-work > .container {
+  padding-bottom: 24px;
+}
+
+.featured-work .section-label {
+  margin-bottom: 8px;
+}
+
+.featured-intro {
+  max-width: 62ch;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.feat-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.feat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 100% 0%, var(--accent-purple-dim), transparent 48%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.feat-card:hover::before,
+.feat-card:focus-visible::before {
+  opacity: 1;
+}
+
+.feat-card:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: -2px;
+}

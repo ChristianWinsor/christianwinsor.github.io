@@ -218,3 +218,10 @@
     max-width: none;
   }
 }
+
+
+.about-writing-feature { display: grid; gap: 6px; max-width: 800px; margin: 12px 0 24px; padding: 20px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-left: 2px solid var(--accent-gold); border-radius: var(--radius-md); }
+.about-writing-feature:hover { border-color: var(--accent-gold); }
+.about-writing-feature strong { color: var(--text-primary); font: 600 17px var(--font-heading); }
+.about-writing-feature span:nth-child(2) { color: var(--text-secondary); font-size: 13px; line-height: 1.5; }
+.about-writing-feature span:last-child { color: var(--accent-blue); font-size: 12px; }

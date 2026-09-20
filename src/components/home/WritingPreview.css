@@ -41,3 +41,13 @@
 .pub-link:hover {
   color: var(--accent-gold);
 }
+
+
+.writing-feature { display: grid; grid-template-columns: minmax(180px, .5fr) 1fr; gap: 6px 22px; margin: 16px 0 22px; padding: 20px 22px; background: linear-gradient(115deg, rgba(219, 173, 88, .08), transparent 65%), var(--bg-secondary); border: 1px solid var(--border-subtle); border-left: 2px solid var(--accent-gold); border-radius: 9px; transition: border-color .18s ease, transform .18s ease; }
+.writing-feature:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+.writing-feature .section-label { grid-column: 1 / -1; }
+.writing-feature strong { font: 600 20px var(--font-heading); color: var(--text-primary); }
+.writing-feature > span:nth-of-type(2) { color: var(--text-secondary); font-size: 13px; line-height: 1.5; }
+.writing-feature small { grid-column: 1 / -1; margin-top: 5px; color: var(--accent-blue); font-size: 12px; }
+@media (max-width: 640px) { .writing-feature { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .writing-feature { transition: none; } .writing-feature:hover { transform: none; } }

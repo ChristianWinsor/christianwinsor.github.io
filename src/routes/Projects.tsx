@@ -16,7 +16,7 @@ const filters: { id: ProjectFilter; label: string }[] = [
 export function Projects() {
   useDocumentTitle(`Projects | ${site.name}`);
   const [filter, setFilter] = useState<ProjectFilter>('all');
-  const filtered = filterProjects(filter).filter((project) => project.featured);
+  const filtered = filterProjects(filter).filter((project) => project.listed);
   const activeLabel = filters.find((f) => f.id === filter)?.label ?? 'All';
 
   return (
@@ -25,7 +25,7 @@ export function Projects() {
         <p className="section-label accent-purple">Work</p>
         <h1>Selected projects</h1>
         <p>
-          Client builds, personal products, and design leadership, from first wireframe to shipped product.
+          Product design, independent publishing, client work, and design systems. Each project shows how the idea became a useful experience.
         </p>
       </div>
 
@@ -51,15 +51,15 @@ export function Projects() {
         <ul className="project-grid">
           {filtered.map((project) => (
             <li key={project.slug}>
-              <Link to={`/projects/${project.slug}`} className="project-card">
+              <Link to={`/projects/${project.slug}`} className={'project-card' + (project.cardImage ? ' project-card--application' : '')}>
                 <div className="project-card-image">
                   <img
-                    src={project.heroImage}
+                    src={project.cardImage ?? project.heroImage}
                     alt={`${project.title} project preview`}
                     loading="lazy"
                     decoding="async"
                   />
-                  <span className={`project-status status-${project.status}`}>{project.status}</span>
+                  <span className={`project-status status-${project.status}`}>{project.status === 'in-progress' ? 'In development' : project.status === 'documented' ? 'Case study' : project.status}</span>
                 </div>
                 <div className="project-card-body">
                   <span className="project-type">{project.type.replace('-', ' ')}</span>

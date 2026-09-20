@@ -1,7 +1,7 @@
 export const site = {
   name: 'Christian Winsor',
   title: 'Senior Designer',
-  tagline: 'Multidisciplinary creative lead who can move from strategy and concept through UX, Visual design, development, client communication, and delivery. Experienced leading while bridging creative and technical teams to create thoughtful products.',
+  tagline: 'I turn complex ideas into clear experiences, building the strategy, visual language, and working product that carry an idea from concept through launch.',
   location: 'London, Ontario',
   email: 'Christianwinsor@gmail.com',
   phone: '(519) 281-4318',
@@ -18,7 +18,9 @@ export const navLinks = [
     children: [
       { label: 'All Projects', to: '/projects' },
       { label: 'Malawian Fish Room', to: '/projects/malawian-fish-room' },
-      { label: 'Pawn Stars', to: '/projects/pawn-stars' },
+      { label: 'Among the Letters', to: '/projects/among-the-letters' },
+      { label: 'Kitchen Navigator', to: '/projects/kitchen-navigator' },
+      { label: 'Maidol', to: '/projects/maidol' },
       { label: 'HubBit', to: '/projects/hubbit' },
       { label: 'Gallery', to: '/gallery' },
     ],

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { site } from '../data/site';
 import { profile, experience } from '../data/experience';
-import { skillGroups } from '../data/skills';
+import { resumeSkillGroups } from '../data/resumeSkills';
 import { publications } from '../data/publications';
 import { projects } from '../data/projects';
 import { Button } from '../components/ui/Button';
@@ -12,7 +12,7 @@ export function Resume() {
   useDocumentTitle(`Resume | ${site.name}`);
 
   const selectedProjects = projects.filter((p) =>
-    ['malawian-fish-room', 'pawn-stars', 'hubbit', 'kitchen-navigator'].includes(p.slug),
+    ['malawian-fish-room', 'among-the-letters', 'hubbit', 'kitchen-navigator'].includes(p.slug),
   );
 
   return (
@@ -83,7 +83,7 @@ export function Resume() {
       <section className="resume-section container">
         <h2 className="section-title">Skills & tools</h2>
         <div className="resume-skills">
-          {skillGroups.map((group) => (
+          {resumeSkillGroups.map((group) => (
             <div key={group.title} className="resume-skill-group">
               <h3>{group.title}</h3>
               <p>{group.skills.join(' · ')}</p>

@@ -11,7 +11,8 @@ export function FeaturedWorkGrid() {
     <section className="featured-work" aria-labelledby="featured-work-heading">
       <div className="container">
         <p className="section-label">Featured work</p>
-        <h2 id="featured-work-heading" className="sr-only">Featured work</h2>
+        <h2 id="featured-work-heading" className="section-title">Ideas carried through to the details</h2>
+        <p className="featured-intro">Selected work across client products, editorial publishing, and design systems.</p>
       </div>
       <div className="featured-grid">
         {wide && (

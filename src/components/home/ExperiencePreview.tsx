@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { experience } from '../../data/experience';
+import { portfolioExperience } from '../../data/portfolioExperience';
 import './ExperiencePreview.css';
 
 export function ExperiencePreview() {
-  const preview = experience.slice(0, 3);
+  const preview = portfolioExperience.slice(0, 3);
 
   return (
     <section className="home-section container" aria-labelledby="experience-heading">

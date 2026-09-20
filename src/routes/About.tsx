@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { site } from '../data/site';
-import { profile, aboutProcess, experience } from '../data/experience';
+import { portfolioProfile, portfolioProcess, portfolioExperience } from '../data/portfolioExperience';
 import { skillGroups } from '../data/skills';
 import { publications } from '../data/publications';
 import { Button } from '../components/ui/Button';
@@ -16,20 +17,19 @@ export function About() {
         <p className="section-label accent-purple">About</p>
         <h1>Design lead who ships.</h1>
         <p>
-          Proficient with the complete design lifecycle, from discovery and user flows through design systems,
-          high-fidelity prototypes, and production-ready implementation.
+          I bring product thinking, visual direction, storytelling, and development together to make complex ideas clear and usable.
         </p>
       </div>
 
       <section className="about-section container" ref={introRef}>
         <h2 className="section-title">Profile</h2>
-        <p className="about-prose">{profile}</p>
+        <p className="about-prose">{portfolioProfile}</p>
       </section>
 
       <section className="about-section container">
         <h2 className="section-title">How I work</h2>
         <div className="process-grid">
-          {aboutProcess.map((step) => (
+          {portfolioProcess.map((step) => (
             <article key={step.step} className="process-card">
               <span className="process-step accent-gold">{step.step}</span>
               <h3>{step.title}</h3>
@@ -42,16 +42,14 @@ export function About() {
       <section className="about-section container">
         <h2 className="section-title">Design leadership at Accelera / Root</h2>
         <p className="about-prose">
-          From 2021 through 2024 I served as the sole designer and design lead across multiple applications.
-          I built the visual design system and designed critical product flows; from login verification
-          to customizable dashboards, iterating rapidly through internal review cycles with engineering.
+          Across nearly four years at Accelera / Root, I worked from frontend development into design leadership. I coordinated the creative and frontend teams, reported to company leaders, worked directly with clients, and connected product design, brand direction, content, and code across client and company work.
         </p>
         <div className="about-highlights">
           <ul>
-            <li>Ground-up design system and component library</li>
-            <li>Interactive high-fidelity prototypes across multiple apps</li>
-            <li>YouTube channel branding and content design</li>
-            <li>Style guides and digital asset libraries</li>
+            <li>Client interfaces, prototypes, websites, and design systems</li>
+            <li>Developer and creative training and setup manuals</li>
+            <li>More than 100 scripted and produced YouTube videos; over 60,000 channel views</li>
+            <li>Presentations, brand systems, frontend work, and beta testing</li>
           </ul>
         </div>
         <Button to="/projects/accelera" variant="secondary">View Accelera case study →</Button>
@@ -60,7 +58,7 @@ export function About() {
       <section className="about-section container">
         <h2 className="section-title">Experience</h2>
         <div className="exp-list">
-          {experience.map((item) => (
+          {portfolioExperience.map((item) => (
             <article key={`${item.company}-${item.dates}`} className="exp-row">
               <time className="exp-dates">{item.dates}</time>
               <div className="exp-body">
@@ -78,7 +76,7 @@ export function About() {
       </section>
 
       <section className="about-section container">
-        <h2 className="section-title">Tools I reach for</h2>
+        <h2 className="section-title">Skills & tools</h2>
         <div className="skills-grid">
           {skillGroups.map((group) => (
             <div key={group.title} className="skill-group">
@@ -94,7 +92,12 @@ export function About() {
       </section>
 
       <section className="about-section container">
-        <h2 className="section-title">Writing & research</h2>
+        <h2 className="section-title">Writing & publishing</h2>
+        <Link to="/projects/among-the-letters" className="about-writing-feature">
+          <strong>Among the Letters</strong>
+          <span>My independent literary publication: concept, editorial direction, visual identity, website, and newsletter.</span>
+          <span>Explore the case study →</span>
+        </Link>
         <div className="pub-list">
           {publications.map((pub) => (
             <article key={pub.url} className="pub-row">

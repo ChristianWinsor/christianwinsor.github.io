@@ -1,281 +1,165 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import {
   SERVICE_QUOTE_STORAGE_KEY,
+  computeRetainerEstimate,
+  formatCad,
+  retainerBundles,
+  retainerRules,
   selectableServices,
   serviceCategories,
   type ServiceQuotePayload,
 } from '../../data/services';
 import './ServiceEstimator.css';
 
-interface ServiceEstimatorProps {
-  selectedIds: Set<string>;
-  setSelectedIds: React.Dispatch<React.SetStateAction<Set<string>>>;
-  appliedBundleId: string | null;
-  setAppliedBundleId: React.Dispatch<React.SetStateAction<string | null>>;
-}
-
-export function ServiceEstimator({
-  selectedIds,
-  setSelectedIds,
-  appliedBundleId,
-  setAppliedBundleId,
-}: ServiceEstimatorProps) {
+export function ServiceEstimator() {
   const navigate = useNavigate();
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(() => new Set());
+  const [appliedBundleId, setAppliedBundleId] = useState<string | null>(null);
+  const [activeCategoryId, setActiveCategoryId] = useState(serviceCategories[0].id);
+  const activeCategory = serviceCategories.find((category) => category.id === activeCategoryId) ?? serviceCategories[0];
+  const activeServices = selectableServices.filter((service) => service.categoryId === activeCategory.id);
+  const estimate = computeRetainerEstimate(selectedIds, appliedBundleId);
 
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
-    () => new Set(serviceCategories.map((c) => c.id)),
-  );
+  function applyBundle(bundleId: string) {
+    const bundle = retainerBundles.find((item) => item.id === bundleId);
+    if (!bundle) return;
+    setSelectedIds(new Set(bundle.serviceIds));
+    setAppliedBundleId(bundleId);
+  }
 
-  const toggleCategory = (categoryId: string) => {
-    setExpandedCategories((prev) => {
-      const next = new Set(prev);
-
-      if (next.has(categoryId)) {
-        next.delete(categoryId);
-      } else {
-        next.add(categoryId);
+  function toggleService(serviceId: string, exclusiveGroup?: string) {
+    const next = new Set(selectedIds);
+    if (next.has(serviceId)) {
+      next.delete(serviceId);
+    } else {
+      if (exclusiveGroup) {
+        selectableServices
+          .filter((service) => service.exclusiveGroup === exclusiveGroup)
+          .forEach((service) => next.delete(service.id));
       }
-
-      return next;
-    });
-  };
-
-  const toggleService = useCallback(
-    (serviceId: string, exclusiveGroup?: string) => {
+      next.add(serviceId);
+    }
+    const appliedBundle = retainerBundles.find((bundle) => bundle.id === appliedBundleId);
+    if (appliedBundle && !appliedBundle.serviceIds.every((id) => next.has(id))) {
       setAppliedBundleId(null);
+    }
+    setSelectedIds(next);
+  }
 
-      setSelectedIds((prev) => {
-        const next = new Set(prev);
-
-        if (next.has(serviceId)) {
-          next.delete(serviceId);
-          return next;
-        }
-
-        if (exclusiveGroup) {
-          selectableServices
-            .filter(
-              (service) =>
-                service.exclusiveGroup === exclusiveGroup &&
-                service.id !== serviceId,
-            )
-            .forEach((service) => next.delete(service.id));
-        }
-
-        next.add(serviceId);
-        return next;
-      });
-    },
-    [setAppliedBundleId, setSelectedIds],
-  );
-
-  const clearSelection = () => {
+  function clearSelection() {
     setSelectedIds(new Set());
     setAppliedBundleId(null);
-  };
+  }
 
-  const handleContact = () => {
-    const selectedServices = selectableServices.filter((service) =>
-      selectedIds.has(service.id),
-    );
-
+  function handleContact() {
     const payload: ServiceQuotePayload = {
       selectedIds: [...selectedIds],
       appliedBundleId,
-      itemLabels: selectedServices.map((service) => service.name),
+      itemLabels: estimate.items.map((service) => service.name),
     };
-
-    sessionStorage.setItem(
-      SERVICE_QUOTE_STORAGE_KEY,
-      JSON.stringify(payload),
-    );
-
+    sessionStorage.setItem(SERVICE_QUOTE_STORAGE_KEY, JSON.stringify(payload));
     navigate('/contact?from=services');
-  };
+  }
 
   return (
-    <div className="estimator">
-      <div className="estimator-menu">
-        <div className="estimator-menu-header">
-          <h3 className="estimator-menu-title">Build your bundle</h3>
-
-          <p className="estimator-menu-desc">
-            Select the services that fit what you need. You can combine
-            services from different categories and change your selections at
-            any time.
-          </p>
-
-          {selectedIds.size > 0 && (
-            <button
-              type="button"
-              className="estimator-clear"
-              onClick={clearSelection}
-            >
-              Clear selection
-            </button>
-          )}
-        </div>
-
-        <div className="estimator-categories">
-          {serviceCategories.map((category) => {
-            const services = selectableServices.filter(
-              (service) => service.categoryId === category.id,
-            );
-
-            const isOpen = expandedCategories.has(category.id);
-
-            const selectedInCategory = services.filter((service) =>
-              selectedIds.has(service.id),
-            ).length;
-
-            return (
-              <div key={category.id} className="estimator-category">
-                <button
-                  type="button"
-                  className="estimator-category-toggle"
-                  aria-expanded={isOpen}
-                  onClick={() => toggleCategory(category.id)}
-                >
-                  <span className="estimator-category-name">
-                    {category.title}
-                  </span>
-
-                  {selectedInCategory > 0 && (
-                    <span className="estimator-category-count">
-                      {selectedInCategory} selected
-                    </span>
-                  )}
-
-                  <span
-                    className="estimator-category-chevron"
-                    aria-hidden="true"
-                  >
-                    {isOpen ? '−' : '+'}
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div className="estimator-category-body">
-                    {category.description && (
-                      <p className="estimator-category-desc">
-                        {category.description}
-                      </p>
-                    )}
-
-                    {category.note && (
-                      <p className="estimator-category-note">
-                        {category.note}
-                      </p>
-                    )}
-
-                    <ul className="estimator-service-list">
-                      {services.map((service) => {
-                        const checked = selectedIds.has(service.id);
-                        const inputId = `service-${service.id}`;
-
-                        return (
-                          <li key={service.id}>
-                            <label
-                              htmlFor={inputId}
-                              className={`estimator-service-option ${
-                                checked ? 'is-selected' : ''
-                              }`}
-                            >
-                              <input
-                                id={inputId}
-                                type="checkbox"
-                                checked={checked}
-                                onChange={() =>
-                                  toggleService(
-                                    service.id,
-                                    service.exclusiveGroup,
-                                  )
-                                }
-                              />
-
-                              <span
-                                className="estimator-service-check"
-                                aria-hidden="true"
-                              />
-
-                              <span className="estimator-service-content">
-                                <span className="estimator-service-name">
-                                  {service.name}
-                                </span>
-
-                                {service.description && (
-                                  <span className="estimator-service-desc">
-                                    {service.description}
-                                  </span>
-                                )}
-                              </span>
-                            </label>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+    <div className="control-panel">
+      <div className="control-panel-topline">
+        <span><span className="control-status-light" aria-hidden="true" /> SERVICE CONFIGURATION</span>
+        <span>CAD / MONTHLY RETAINER</span>
       </div>
 
-      <aside className="estimator-summary" aria-live="polite">
-        <div className="estimator-summary-inner">
-          <p className="section-label accent-gold">Bundle planner</p>
-
-          <h3 className="estimator-summary-title">
-            Your selected services
-          </h3>
-
-          {selectedIds.size > 0 ? (
-            <ul className="estimator-summary-items">
-              {selectableServices
-                .filter((service) => selectedIds.has(service.id))
-                .map((service) => (
-                  <li key={service.id}>
-                    <span>{service.name}</span>
-                  </li>
-                ))}
-            </ul>
-          ) : (
-            <p className="estimator-summary-empty">
-              Select services to start building your bundle.
-            </p>
-          )}
-
-          {appliedBundleId && (
-            <p className="estimator-summary-bundle">
-              A suggested bundle has been added to your selection. You can
-              change any of its services before requesting it.
-            </p>
-          )}
-
-          <div className="estimator-summary-actions">
-            <Button
-              type="button"
-              variant="primary"
-              onClick={handleContact}
-              disabled={selectedIds.size === 0}
-            >
-              Request this bundle
-            </Button>
-
-            <Button to="/contact" variant="secondary">
-              General inquiry
-            </Button>
-          </div>
-
-          <p className="estimator-summary-contact-note">
-            Your selected services will be included in the contact form so we
-            can discuss scope, timing, and pricing together.
-          </p>
+      <div className="control-panel-intro">
+        <div>
+          <p className="section-label accent-green">01 / Choose a starting point</p>
+          <h3>Start with a plan, or build your own.</h3>
+          <p>Each plan is a starting point. Add services across categories as needed; your estimate updates immediately.</p>
         </div>
-      </aside>
+        <button type="button" className="control-clear" onClick={clearSelection}>Start custom / clear</button>
+      </div>
+
+      <div className="control-presets" aria-label="Suggested monthly bundles">
+        {retainerBundles.map((bundle) => (
+          <button
+            type="button"
+            key={bundle.id}
+            className={'control-preset' + (appliedBundleId === bundle.id ? ' is-active' : '')}
+            aria-pressed={appliedBundleId === bundle.id}
+            onClick={() => applyBundle(bundle.id)}
+          >
+            <span className="control-preset-name">{bundle.name}</span>
+            <span className="control-preset-price">{formatCad(bundle.monthlyTotal)}<small>/mo</small></span>
+            <span className="control-preset-desc">{bundle.description}</span>
+            <span className="control-preset-savings">Save {formatCad(bundle.bundleSavings)}/mo · setup waived</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="control-panel-workspace">
+        <div className="control-catalog">
+          <div className="control-workspace-heading">
+            <p className="section-label accent-green">02 / Adjust your services</p>
+            <h3>Explore the options</h3>
+          </div>
+          <p className="control-category-hint">Swipe to explore service categories →</p>
+          <div className="control-category-list" aria-label="Service categories">
+            {serviceCategories.map((category, index) => {
+              const count = selectableServices.filter((service) => service.categoryId === category.id && selectedIds.has(service.id)).length;
+              return (
+                <button
+                  type="button"
+                  key={category.id}
+                  className={'control-category' + (category.id === activeCategory.id ? ' is-active' : '')}
+                  aria-pressed={category.id === activeCategory.id}
+                  onClick={() => setActiveCategoryId(category.id)}
+                >
+                  <span className="control-category-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span>{category.title}</span>
+                  {count > 0 && <span className="control-category-count">{count}</span>}
+                </button>
+              );
+            })}
+          </div>
+          <div className="control-options" aria-live="polite">
+            <h4>{activeCategory.title}</h4>
+            {activeCategory.description && <p>{activeCategory.description}</p>}
+            {activeCategory.note && <p className="control-option-note">{activeCategory.note}</p>}
+            <div className="control-option-list">
+              {activeServices.map((service) => (
+                <label key={service.id} className={'control-option' + (selectedIds.has(service.id) ? ' is-selected' : '')}>
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(service.id)}
+                    onChange={() => toggleService(service.id, service.exclusiveGroup)}
+                  />
+                  <span className="control-option-copy">
+                    <strong>{service.name}</strong>
+                    {service.description && <small>{service.description}</small>}
+                  </span>
+                  <span className="control-option-price">{service.priceLabel}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside className="control-summary" aria-labelledby="control-summary-heading">
+          <p className="section-label accent-green">03 / Review your plan</p>
+          <h3 id="control-summary-heading">Your monthly estimate</h3>
+          <p className="control-total">{formatCad(estimate.monthlyTotal)}<small>/mo</small></p>
+          {estimate.bundle && <p className="control-savings">{estimate.bundle.name}: {formatCad(estimate.bundle.bundleSavings)}/mo savings and setup waived.</p>}
+          <p className="control-setup">One-time setup: {formatCad(estimate.setupFee)}{estimate.items.length === 0 ? ' when services are selected' : ''}</p>
+          {!estimate.meetsMinimum && <p className="control-minimum">Monthly retainers start at {formatCad(retainerRules.minimumMonthly)}. Add services to reach the minimum.</p>}
+          {estimate.items.length > 0 ? (
+            <ul className="control-selected">
+              {estimate.items.map((item) => <li key={item.id}><span>{item.name}</span><span>{item.priceLabel}</span></li>)}
+            </ul>
+          ) : <p className="control-empty">Choose a plan or select individual services to see your estimate.</p>}
+          <Button type="button" variant="primary" onClick={handleContact} disabled={estimate.items.length === 0 || !estimate.meetsMinimum}>Discuss this plan</Button>
+          <p className="control-fineprint">{retainerRules.disclaimer} Advertising spend, hosting, domains, and third-party subscriptions are separate.</p>
+        </aside>
+      </div>
     </div>
   );
 }

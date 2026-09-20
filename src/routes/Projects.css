@@ -3,11 +3,10 @@
 }
 
 .project-filters {
-  display: none;
-  /*display: flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: var(--space-xl);*/
+  margin-bottom: var(--space-xl);
 }
 
 .filter-pill {
@@ -93,6 +92,11 @@
 .status-live {
   background: var(--accent-green-dim);
   color: var(--accent-green);
+}
+
+.status-in-progress {
+  background: var(--accent-gold-dim);
+  color: var(--accent-gold);
 }
 
 .status-shipped {
@@ -256,3 +260,4 @@
     min-width: 0;
   }
 }
+.project-card--application .project-card-image img { object-fit: cover; object-position: center 18%; }

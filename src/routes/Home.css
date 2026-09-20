@@ -48,3 +48,85 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.hero {
+  padding-top: clamp(90px, 10vw, 140px);
+}
+
+.hero-title {
+  max-width: 900px;
+  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  letter-spacing: -0.035em;
+}
+
+.hero-title-sub {
+  margin-top: 5px;
+  font-size: 0.7em;
+  letter-spacing: -0.04em;
+}
+
+.hero-sub {
+  max-width: 670px;
+  font-size: clamp(16px, 1.6vw, 18px);
+}
+
+.hero-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(52px, 7vw, 90px);
+  background: var(--border-strong);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.hero-paths a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 20px;
+  background: rgba(18, 18, 26, 0.88);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-paths a:hover {
+  background: var(--bg-tertiary);
+}
+
+.hero-paths a > span {
+  color: var(--accent-gold);
+  font: 10px var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-paths strong {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hero-paths strong span {
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-paths a:hover strong span {
+  color: var(--accent-gold);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 700px) {
+  .hero-paths {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-paths a {
+    padding: 16px 18px;
+  }
+}

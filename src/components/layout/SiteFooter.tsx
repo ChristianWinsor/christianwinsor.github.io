@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div className="footer-brand">
           <p className="footer-name">{site.name}</p>
           <p className="footer-tagline">
-            Senior Designer specializing in product design, design systems, and shipped digital products.
+            Design direction, systems, writing, and working products from first question to final detail.
           </p>
         </div>
 

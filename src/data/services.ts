@@ -760,19 +760,20 @@ export function getServiceById(id: string): SelectableService | undefined {
 }
 
 export function computeRetainerEstimate(selectedIds: Set<string>, appliedBundleId: string | null) {
-  const items = selectableServices.filter((s) => selectedIds.has(s.id));
-  const monthlyTotal = items.filter((s) => s.billing === 'monthly').reduce((sum, s) => sum + s.amountCad, 0);
-
-  const setupFee =
-    appliedBundleId != null
-      ? 0
-      : monthlyTotal > 0
-        ? monthlyTotal >= retainerRules.setupThreshold
-          ? retainerRules.setupFee1500Plus
-          : retainerRules.setupFeeUnder1500
-        : 0;
-
-  const bundle = appliedBundleId ? retainerBundles.find((b) => b.id === appliedBundleId) : undefined;
+  const items = selectableServices.filter((service) => selectedIds.has(service.id));
+  const rawMonthlyTotal = items
+    .filter((service) => service.billing === 'monthly')
+    .reduce((sum, service) => sum + service.amountCad, 0);
+  const candidate = appliedBundleId
+    ? retainerBundles.find((bundle) => bundle.id === appliedBundleId)
+    : undefined;
+  const bundle = candidate?.serviceIds.every((id) => selectedIds.has(id)) ? candidate : undefined;
+  const monthlyTotal = rawMonthlyTotal - (bundle?.bundleSavings ?? 0);
+  const setupFee = bundle || monthlyTotal === 0
+    ? 0
+    : monthlyTotal >= retainerRules.setupThreshold
+      ? retainerRules.setupFee1500Plus
+      : retainerRules.setupFeeUnder1500;
 
   return {
     items,
@@ -798,17 +799,15 @@ export interface ServiceQuotePayload {
 }
 
 export function buildServiceQuoteMessage(quote: ServiceQuotePayload): string {
-  const lines = quote.itemLabels.map((label) => `• ${label}`).join('\n');
-
-  const bundleNote = quote.appliedBundleId
-    ? '\n\nI selected a suggested bundle as a starting point, but I am open to adjusting the services based on scope.'
+  const lines = quote.itemLabels.map((label) => '• ' + label).join('\n');
+  const estimate = computeRetainerEstimate(new Set(quote.selectedIds), quote.appliedBundleId);
+  const bundleNote = estimate.bundle
+    ? '\n\nSuggested plan: ' + estimate.bundle.name + '.'
     : '';
+  const estimateNote = '\nStarting estimate shown on the site: ' + formatCad(estimate.monthlyTotal) +
+    '/month, with a ' + formatCad(estimate.setupFee) + ' one-time setup fee.';
 
-  return `Hi Christian,
-
-I'm interested in discussing the following services:
-
-${lines || '(No services selected)'}${bundleNote}
-
-I'd like to discuss scope, timing, pricing, and next steps.`;
+  return 'Hi Christian,\n\nI am interested in discussing these services:\n\n' +
+    (lines || '(No services selected)') + bundleNote + estimateNote +
+    '\n\nI would like to confirm scope, timing, final pricing, and next steps.';
 }
