@@ -3,4 +3,5 @@
   padding-top: var(--header-height);
   position: relative;
   z-index: 1;
+  overflow-x: clip;
 }

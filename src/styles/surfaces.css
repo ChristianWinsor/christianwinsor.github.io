@@ -49,16 +49,33 @@
   box-shadow: 0 0 0 2px rgba(155, 109, 255, .12);
 }
 
-/* Keep content visible even if a visitor jumps quickly through the page. */
-.site-reveal.is-visible { animation: surface-enter .55s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms) both; }
-@keyframes surface-enter {
-  from { opacity: .78; translate: 0 10px; }
-  to { opacity: 1; translate: 0 0; }
+/* Motion is assigned only after the page has loaded and only below the first viewport. */
+.motion-pending {
+  opacity: 0;
+  translate: 0 34px;
+}
+.motion-pending.motion-right { translate: min(7vw, 96px) 0; }
+.motion-pending.motion-visible,
+.motion-pending:focus-within {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity .72s ease var(--motion-delay, 0ms),
+    translate .72s cubic-bezier(.2, .7, .2, 1) var(--motion-delay, 0ms);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .site-reveal.is-visible { animation: none; }
+@media (max-width: 680px) {
+  .motion-pending { translate: 0 26px; }
+  .motion-pending.motion-right { translate: 44px 0; }
+  .motion-pending.motion-visible,
+  .motion-pending:focus-within { translate: 0 0; }
 }
-@media print {
-  .site-reveal.is-visible { animation: none; }
+@media (prefers-reduced-motion: reduce), print {
+  .motion-pending,
+  .motion-pending.motion-right,
+  .motion-pending.motion-visible {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: none !important;
+  }
 }
