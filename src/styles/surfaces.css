@@ -1,0 +1,64 @@
+/* A quiet continuation of the warm publication-card treatment across the site. */
+:root {
+  --surface-spectrum: linear-gradient(115deg, rgba(219, 173, 88, .075), rgba(155, 109, 255, .032) 70%, rgba(77, 166, 255, .018));
+}
+
+.page-shell .hero-paths a,
+.page-shell .feat-card,
+.page-shell .process-card,
+.page-shell .about-writing-feature,
+.page-shell .project-card-body,
+.page-shell .case-panel,
+.page-shell .case-feature,
+.page-shell .case-decision,
+.page-shell .case-result-list li,
+.page-shell .case-next-link,
+.page-shell .services-proof-grid a,
+.page-shell .services-process-card,
+.page-shell .not-found-terminal {
+  background-image: var(--surface-spectrum);
+}
+
+.page-shell .feat-card:hover,
+.page-shell .hero-paths a:hover,
+.page-shell .project-card:hover .project-card-body,
+.page-shell .case-next-link:hover {
+  background-image: linear-gradient(115deg, rgba(219, 173, 88, .12), rgba(155, 109, 255, .07) 75%);
+}
+
+.page-shell .about-section .exp-row,
+.page-shell .resume-exp-item,
+.page-shell .resume-project-item,
+.page-shell .resume-pubs article,
+.page-shell .contact-info,
+.page-shell .contact-form-section {
+  background-image: var(--surface-spectrum);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 2.3vw, 26px);
+}
+
+.page-shell .about-section .exp-row { margin-bottom: 12px; }
+.page-shell .about-section .exp-row:last-child { margin-bottom: 0; }
+.page-shell .resume-pubs article { overflow-wrap: anywhere; }
+.page-shell .gallery-item { transition: border-color .2s ease, box-shadow .2s ease; }
+.page-shell .gallery-item:hover,
+.page-shell .gallery-item:focus-visible {
+  border-color: rgba(212, 168, 83, .48);
+  box-shadow: 0 0 0 2px rgba(155, 109, 255, .12);
+}
+
+/* Keep content visible even if a visitor jumps quickly through the page. */
+.site-reveal.is-visible { animation: surface-enter .55s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms) both; }
+@keyframes surface-enter {
+  from { opacity: .78; translate: 0 10px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-reveal.is-visible { animation: none; }
+}
+@media print {
+  .site-reveal.is-visible { animation: none; }
+}

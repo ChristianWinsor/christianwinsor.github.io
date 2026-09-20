@@ -51,7 +51,7 @@ export function Projects() {
         <ul className="project-grid">
           {filtered.map((project) => (
             <li key={project.slug}>
-              <Link to={`/projects/${project.slug}`} className={'project-card' + (project.cardImage ? ' project-card--application' : '')}>
+              <Link to={`/projects/${project.slug}`} className={'project-card' + (['kitchen-navigator', 'maidol'].includes(project.slug) ? ' project-card--portrait' : '')}>
                 <div className="project-card-image">
                   <img
                     src={project.cardImage ?? project.heroImage}
