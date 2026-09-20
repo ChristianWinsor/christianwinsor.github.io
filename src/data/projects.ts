@@ -144,7 +144,7 @@ export const projects: Project[] = [
       { src: '/amongletters.png', alt: 'Among the Letters editorial still life with an open book, envelopes, pen, and coffee', caption: 'Editorial imagery' },
       { src: '/amongthelettersbranding.png', alt: 'Among the Letters script wordmark in a framed brand treatment', caption: 'Publication wordmark' },
       { src: '/atllogo-removebg-preview.png', alt: 'Circular Among the Letters brand mark', caption: 'Circular brand mark' },
-      { src: '/atllogo.jpg', alt: 'Among the Letters circular logo on a light background', caption: 'Logo variation' },
+      //{ src: '/atllogo.jpg', alt: 'Among the Letters circular logo on a light background', caption: 'Logo variation' },
     ],
     techStack: ['Editorial direction', 'Brand identity', 'Website design', 'Newsletter publishing', 'Substack'],
     nextProject: 'hubbit',
