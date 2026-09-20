@@ -33,6 +33,7 @@ export function SiteHeader() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -54,7 +55,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className={`site-header ${scrolled ? 'scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
+    <header className={`site-header ${scrolled ? 'scrolled' : ''}${menuOpen ? ' menu-open' : ''}`} style={scrolled || menuOpen ? { backgroundColor: 'rgba(10, 10, 15, 0.94)' } : undefined}>
       <div className="container site-header-inner">
         <Link to="/" className="site-logo" onClick={closeMenu}>
           {site.name}

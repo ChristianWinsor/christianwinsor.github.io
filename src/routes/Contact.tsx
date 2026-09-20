@@ -1,11 +1,13 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { site } from '../data/site';
 import {
   SERVICE_QUOTE_STORAGE_KEY,
   buildServiceQuoteMessage,
+  getCatalogOption,
+  validServiceQuote,
   type ServiceQuotePayload,
-} from '../data/services';
+} from '../data/serviceCatalog';
 import { Button } from '../components/ui/Button';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 import './Contact.css';
@@ -21,7 +23,8 @@ function readServiceQuote(): ServiceQuotePayload | null {
   try {
     const raw = sessionStorage.getItem(SERVICE_QUOTE_STORAGE_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as ServiceQuotePayload;
+    const value: unknown = JSON.parse(raw);
+    return validServiceQuote(value) ? value : null;
   } catch {
     return null;
   }
@@ -30,6 +33,7 @@ function readServiceQuote(): ServiceQuotePayload | null {
 export function Contact() {
   useDocumentTitle(`Contact | ${site.name}`);
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const fromServices = searchParams.get('from') === 'services';
 
   const [submitted, setSubmitted] = useState(false);
@@ -41,14 +45,14 @@ export function Contact() {
 
   useEffect(() => {
     if (!fromServices) return;
-    const quote = readServiceQuote();
+    const quote = validServiceQuote(location.state) ? location.state : readServiceQuote();
     if (!quote) return;
 
-    setSubject('Retainer inquiry');
+    setSubject(quote.optionIds.some((id) => getCatalogOption(id)?.billing === 'one-time') || quote.optionIds.length === 0
+      ? 'Freelance project' : 'Retainer inquiry');
     setMessage(buildServiceQuoteMessage(quote));
     setQuoteNotice(true);
-    sessionStorage.removeItem(SERVICE_QUOTE_STORAGE_KEY);
-  }, [fromServices]);
+  }, [fromServices, location.state]);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -92,7 +96,7 @@ export function Contact() {
 
           {quoteNotice && !submitted && (
             <p className="contact-quote-notice" role="status">
-              Your selected services from the Bundle Planner are included below. Edit anything before sending.
+              Your choices from the service console are included below. Edit anything before sending.
             </p>
           )}
 
